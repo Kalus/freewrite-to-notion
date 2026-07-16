@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+dist/
+node_modules/
+workers.*.json
+workers.json
+
+# Local Notion Worker scaffold guidance and examples
+.agents/
+.claude/
+.claudeignore
+.codexignore
+.examples/
+AGENTS.md
+CLAUDE.md
+docs/custom-tool.png

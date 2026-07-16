@@ -1,0 +1,25 @@
+{
+	"name": "freewrite-to-notion",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Sync Freewrite Postbox Markdown drafts from Google Drive into Notion.",
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"build": "tsc",
+		"check": "tsc --noEmit",
+		"test": "node --import tsx --test \"test/**/*.test.ts\""
+	},
+	"engines": {
+		"node": ">=22.0.0",
+		"npm": ">=10.9.2"
+	},
+	"devDependencies": {
+		"@types/node": "^22.9.0",
+		"tsx": "^4.20.6",
+		"typescript": "^5.8.0"
+	},
+	"dependencies": {
+		"@notionhq/workers": ">=0.0.0"
+	}
+}
