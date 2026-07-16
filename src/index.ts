@@ -59,7 +59,7 @@ const notionSearchApi = worker.pacer("notionSearchApi", {
 worker.sync("freewriteDraftsDelta", {
 	database: freewriteDrafts,
 	mode: "incremental",
-	schedule: "5m",
+	schedule: "12h",
 	execute: async (state: DeltaState | undefined, { notion }) => {
 		const config = getSyncConfig();
 		const drive = new DriveClient(

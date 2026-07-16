@@ -20,7 +20,7 @@ Freewrite or Google Drive.
   recently edited.
 - Leaves unresolved `[[...]]` markers visible and retries them during the next
   daily reconciliation.
-- Syncs new and changed files every five minutes and fully reconciles the
+- Syncs new and changed files every 12 hours and fully reconciles the
   source daily, including deletions and moves out of A/B/C.
 - Preserves user-added database properties. The worker-managed properties and
   page body remain controlled by the sync.
@@ -166,7 +166,7 @@ ntn workers sync trigger freewriteDraftsReconcile
 ntn workers sync status
 ```
 
-The delta sync runs every five minutes. You can preview or trigger it manually:
+The delta sync runs every 12 hours. You can preview or trigger it manually:
 
 ```shell
 ntn workers sync trigger freewriteDraftsDelta --preview
