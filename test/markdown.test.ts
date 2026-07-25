@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { decodeUtf8, parseDraft, transformWikiLinks } from "../src/markdown.js";
+import {
+	countWords,
+	decodeUtf8,
+	parseDraft,
+	transformWikiLinks,
+} from "../src/markdown.js";
 
 test("parses a dated first line and removes it from the body", () => {
 	const parsed = parseDraft(
@@ -29,6 +34,11 @@ test("supports Markdown headings in source title lines", () => {
 	assert.equal(parsed.title, "Dream Notes");
 	assert.equal(parsed.draftDate, "2025-12-03");
 	assert.equal(parsed.body, "Body");
+});
+
+test("counts body words without counting Markdown punctuation", () => {
+	assert.equal(countWords("_Notes_\n\nDon't count **markup**—count words."), 6);
+	assert.equal(countWords(""), 0);
 });
 
 test("resolves each unique wiki term once and preserves unresolved markers", async () => {

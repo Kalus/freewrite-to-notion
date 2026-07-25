@@ -41,6 +41,7 @@ The worker creates **Freewrite Drafts** with these managed properties:
 | Source Filename | Exact Drive filename |
 | Source URL | Link to the original Drive file |
 | Drive Created / Modified | Source timestamps |
+| Word Count | Words in the parsed draft body, excluding the source title line |
 | Unresolved Links | Count of unresolved wiki-link occurrences |
 | Sync Status / Sync Error | Deterministic content validation status |
 

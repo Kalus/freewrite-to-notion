@@ -8,7 +8,7 @@ import {
 	type DriveFilePage,
 	type ListMarkdownOptions,
 } from "./drive.js";
-import { decodeUtf8, parseDraft, transformWikiLinks } from "./markdown.js";
+import { countWords, decodeUtf8, parseDraft, transformWikiLinks } from "./markdown.js";
 
 export type ReconcileState = { pageToken?: string };
 export type DeltaState = {
@@ -207,6 +207,7 @@ async function buildUpsert(
 		title: parsed.title,
 		draftDate: parsed.draftDate ?? fallbackDate,
 		sourceUrl,
+		wordCount: countWords(parsed.body),
 		unresolvedLinks: transformed.unresolvedCount,
 		status: "Synced",
 		error: "",
@@ -220,6 +221,7 @@ function makeUpsert(input: {
 	title: string;
 	draftDate: string;
 	sourceUrl: string;
+	wordCount?: number;
 	unresolvedLinks: number;
 	status: "Synced" | "Needs Attention";
 	error: string;
@@ -237,6 +239,9 @@ function makeUpsert(input: {
 			"Source URL": Builder.url(input.sourceUrl),
 			"Drive Created": Builder.dateTime(input.file.createdTime),
 			"Drive Modified": Builder.dateTime(input.file.modifiedTime),
+			...(input.wordCount === undefined
+				? {}
+				: { "Word Count": Builder.number(input.wordCount) }),
 			"Unresolved Links": Builder.number(input.unresolvedLinks),
 			"Sync Status": Builder.select(input.status),
 			"Sync Error": Builder.richText(sanitizeError(input.error)),

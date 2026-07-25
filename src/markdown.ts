@@ -41,6 +41,11 @@ export function parseDraft(content: string, filename: string): ParsedDraft {
 	};
 }
 
+export function countWords(text: string): number {
+	const segmenter = new Intl.Segmenter("en", { granularity: "word" });
+	return [...segmenter.segment(text)].filter((segment) => segment.isWordLike).length;
+}
+
 export async function transformWikiLinks(
 	markdown: string,
 	resolver: WikiLinkResolver,

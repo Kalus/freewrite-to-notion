@@ -36,6 +36,7 @@ const freewriteDrafts = worker.database("freewriteDrafts", {
 			"Source URL": Schema.url(),
 			"Drive Created": Schema.date(),
 			"Drive Modified": Schema.date(),
+			"Word Count": Schema.number(),
 			"Unresolved Links": Schema.number(),
 			"Sync Status": Schema.select([
 				{ name: "Synced", color: "green" },

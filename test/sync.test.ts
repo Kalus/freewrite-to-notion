@@ -65,6 +65,7 @@ test("reconcile builds a synced page and chooses the first active Notion result"
 	);
 	assert.deepEqual(change.properties.Title, [["Long Live the God King"]]);
 	assert.deepEqual(change.properties["Postbox Folder"], [["A"]]);
+	assert.deepEqual(change.properties["Word Count"], [["3"]]);
 	assert.deepEqual(change.properties["Sync Status"], [["Synced"]]);
 	assert.equal(searchCalls.length, 1);
 	assert.deepEqual(searchCalls[0], {
@@ -126,6 +127,7 @@ test("oversized content is marked for attention without downloading or replacing
 	const change = result.changes[0];
 	assert.equal(downloaded, false);
 	assert.equal("pageContentMarkdown" in change, false);
+	assert.equal("Word Count" in change.properties, false);
 	assert.deepEqual(change.properties["Sync Status"], [["Needs Attention"]]);
 	assert.match(change.properties["Sync Error"][0][0], /exceeds/);
 });
